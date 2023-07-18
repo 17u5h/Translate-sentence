@@ -1,7 +1,7 @@
 import React from 'react';
-import HumanFigure from "./SVG/HumanFigure";
-import SpeakingCloud from "./SVG/SpeakingCloud";
-import * as S from '../../styles/mainPageStyles'
+import HumanFigure from "../SVG/HumanFigure";
+import SpeakingCloud from "../SVG/SpeakingCloud";
+import * as S from '../../../styles/mainPageStyles'
 import NeedToTranslateText from "./NeedToTranslateText";
 
 const NeedToTranslateBlock = () => {

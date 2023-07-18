@@ -25,12 +25,17 @@ export const NeedToTranslateBlock = styled.div`
 export const SpeakingCloudContainer = styled.div`
 	position: relative;
 `
-export const NeedToTranslateText = styled.p`
+export const NeedToTranslateText = styled.div`
 	position: absolute;
+	display: flex;
+	gap: 6px;
+	flex-wrap: wrap;
 	font-weight: 600;
 	line-height: 30px;
 	left: 15%;
 	top: 30%;
 	width: 80%;
-	border-bottom: 2px dashed ${vars.$colorThemeShadows};
+`
+export const NeedToTranslateWord = styled.p`
+  border-bottom: 2px dashed ${vars.$colorThemeShadows};
 `
