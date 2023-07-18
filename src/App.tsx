@@ -1,12 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import MainPage from './pages/MainPage'
+import { GlobalStyle } from './styles/globalStyle'
 
 function App() {
   return (
-    <div>
-
-    </div>
-  );
+    <>
+      <GlobalStyle />
+      <MainPage />
+    </>
+  )
 }
 
-export default App;
+export default App
