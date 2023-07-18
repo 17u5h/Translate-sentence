@@ -1,19 +1,18 @@
 import React from 'react'
 import * as S from '../../../styles/mainPageStyles'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
-import ConstructorWord from '../ConstructorBlock/ConstructorWord'
+import ConstructorWord from './ConstructorWord'
 
-const WorksheetBlock = () => {
+const ConstructorBlock = () => {
   const { constructorArray } = useWorkplaceStore(({ constructorArray }) => ({ constructorArray }))
-  console.log('here')
 
   return (
-    <S.WorksheetBlock>
+    <S.ConstructorBlock>
       {constructorArray.map((el) => (
         <ConstructorWord key={el.id} word={el.word} />
       ))}
-    </S.WorksheetBlock>
+    </S.ConstructorBlock>
   )
 }
 
-export default WorksheetBlock
+export default ConstructorBlock

@@ -39,8 +39,42 @@ export const NeedToTranslateText = styled.div`
 export const NeedToTranslateWord = styled.p`
   border-bottom: 2px dashed ${vars.$colorThemeShadows};
 `
-export const WorkSheetBlock = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	gap: 6px;
+export const WorksheetBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 6px;
+  row-gap: 10px;
+  width: 100%;
+  min-height: 100px;
+  border: 4px dashed ${vars.$colorThemeShadows};
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+`
+export const WorksheetWord = styled.p``
+
+export const ConstructorBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 6px;
+  row-gap: 10px;
+  padding: 8px 16px;
+`
+export const ConstructorWord = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  padding: 4px 18px;
+  border: 2px solid ${vars.$colorThemeShadows};
+  border-radius: 16px;
+  box-shadow: 0 4px 4px ${vars.$colorThemeShadows};
+  font-weight: 600;
+  cursor: pointer;
+`
+export const ConstructorEmptySpace = styled(ConstructorWord)`
+  background-color: ${vars.$colorThemeShadows};
+  box-shadow: inset 0 4px 4px ${vars.$colorThemeMain};
+  color: ${vars.$colorThemeShadows};
 `
