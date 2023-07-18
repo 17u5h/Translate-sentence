@@ -9,6 +9,7 @@ import { useWorkplaceStore } from '../store/workplaceStore'
 import ConstructorBlock from '../components/MainPage/ConstructorBlock'
 import { shuffleWords } from '../lib/shuffleWords'
 import WorksheetBlock from '../components/MainPage/WorksheetBlock'
+import UIButton from "../components/UI/UIButton";
 
 const MainPage = () => {
   const { dispatchEnglishPhraseArray } = usePhrasesStore(({ dispatchEnglishPhraseArray }) => ({
@@ -38,6 +39,7 @@ const MainPage = () => {
         <NeedToTranslateBlock />
         <WorksheetBlock />
         <ConstructorBlock />
+        <UIButton/>
       </S.Container>
     </S.Wrapper>
   )

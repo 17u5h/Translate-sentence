@@ -4,12 +4,11 @@ import { useWorkplaceStore } from '../../../store/workplaceStore'
 import ConstructorWord from '../ConstructorBlock/ConstructorWord'
 
 const WorksheetBlock = () => {
-  const { constructorArray } = useWorkplaceStore(({ constructorArray }) => ({ constructorArray }))
-  console.log('here')
+  const { worksheetArray } = useWorkplaceStore(({ worksheetArray }) => ({ worksheetArray }))
 
   return (
     <S.WorksheetBlock>
-      {constructorArray.map((el) => (
+      {worksheetArray.map((el) => (
         <ConstructorWord key={el.id} word={el.word} />
       ))}
     </S.WorksheetBlock>
