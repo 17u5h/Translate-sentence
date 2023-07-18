@@ -32,8 +32,8 @@ export const NeedToTranslateText = styled.div`
   flex-wrap: wrap;
   font-weight: 600;
   line-height: 30px;
-  left: 15%;
-  top: 30%;
+  left: 18%;
+  top: 2%;
   width: 80%;
 `
 export const NeedToTranslateWord = styled.p`

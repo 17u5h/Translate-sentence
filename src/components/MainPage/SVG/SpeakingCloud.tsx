@@ -3,8 +3,8 @@ import React from 'react'
 const SpeakingCloud = () => {
   return (
     <svg
-      width="380"
-      height="150"
+      width="460"
+      height="120"
       viewBox="0 0 1403 374"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
