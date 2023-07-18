@@ -1,4 +1,4 @@
 export type Word = {
-	id: number
-	word: string
+  id: number
+  word: string
 }

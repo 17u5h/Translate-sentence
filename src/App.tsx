@@ -1,14 +1,14 @@
-import React from 'react';
-import MainPage from "./pages/MainPage";
-import {GlobalStyle} from "./styles/globalStyle";
+import React from 'react'
+import MainPage from './pages/MainPage'
+import { GlobalStyle } from './styles/globalStyle'
 
 function App() {
   return (
     <>
-      <GlobalStyle/>
-      <MainPage/>
+      <GlobalStyle />
+      <MainPage />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
