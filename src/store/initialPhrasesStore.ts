@@ -1,14 +1,14 @@
 import { create } from 'zustand'
 import { Word } from '../types/Word'
 
-type PhrasesStore = {
+type InitialPhrasesStore = {
   englishPhraseArray: Word[]
   dispatchEnglishPhraseArray: (englishPhraseArray: Word[]) => void
   russianPhraseArray: Word[]
   dispatchRussianPhraseArray: (russianPhraseArray: Word[]) => void
 }
 
-export const usePhrasesStore = create<PhrasesStore>((set) => ({
+export const usePhrasesStore = create<InitialPhrasesStore>((set) => ({
   englishPhraseArray: [],
   dispatchEnglishPhraseArray: (englishPhraseArray: Word[]) =>
     set((state) => ({

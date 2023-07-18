@@ -39,3 +39,8 @@ export const NeedToTranslateText = styled.div`
 export const NeedToTranslateWord = styled.p`
   border-bottom: 2px dashed ${vars.$colorThemeShadows};
 `
+export const WorkSheetBlock = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+`

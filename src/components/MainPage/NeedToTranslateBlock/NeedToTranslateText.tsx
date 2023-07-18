@@ -1,6 +1,6 @@
 import React from 'react'
 import * as S from '../../../styles/mainPageStyles'
-import { usePhrasesStore } from '../../../store/phrasesStore'
+import { usePhrasesStore } from '../../../store/initialPhrasesStore'
 import NeedToTranslateWord from './NeedToTranslateWord'
 
 const NeedToTranslateText = () => {
