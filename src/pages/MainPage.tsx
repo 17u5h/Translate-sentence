@@ -20,12 +20,17 @@ const MainPage = () => {
 	}))
 
 	const fetchEnAndRusPhrases = async () => {
-		const data = phrasesStub
-		const englishWordsArray = convertStringPhraseToWordsArray(data.en)
-		const russianWordsArray = convertStringPhraseToWordsArray(data.ru)
-		shuffleWords(russianWordsArray)
-		dispatchEnglishPhraseArray(englishWordsArray)
-		dispatchConstructorArray(russianWordsArray)
+		try {
+			const data = phrasesStub
+			const englishWordsArray = convertStringPhraseToWordsArray(data.en)
+			const russianWordsArray = convertStringPhraseToWordsArray(data.ru)
+			shuffleWords(russianWordsArray)
+			dispatchEnglishPhraseArray(englishWordsArray)
+			dispatchConstructorArray(russianWordsArray)
+		} catch (e) {
+			console.error(e)
+		}
+
 	}
 
 	useEffect(() => {
