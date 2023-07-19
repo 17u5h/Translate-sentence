@@ -72,6 +72,7 @@ export const ConstructorWord = styled.p`
   box-shadow: 0 4px 4px ${vars.$colorThemeShadows};
   font-weight: 600;
   cursor: pointer;
+	user-select: none;
 `
 export const ConstructorEmptySpace = styled(ConstructorWord)`
   background-color: ${vars.$colorThemeShadows};
