@@ -62,7 +62,8 @@ export const ConstructorBlock = styled.div`
   height: 120px;
   width: 100%;
   padding: 8px 16px;
-  border: 1px solid #aaa;
+  background-color: #efefef;
+	border-radius: 12px;
 `
 export const ConstructorWord = styled.div`
   display: flex;
