@@ -1,7 +1,6 @@
 import { styled } from 'styled-components'
 import { vars } from './_vars'
 
-
 export const Wrapper = styled.div`
   width: 800px;
   margin: auto;
@@ -60,10 +59,10 @@ export const ConstructorBlock = styled.div`
   align-items: center;
   column-gap: 6px;
   row-gap: 10px;
-	height: 120px;
-	width: 100%;
+  height: 120px;
+  width: 100%;
   padding: 8px 16px;
-	border: 1px solid #aaa;
+  border: 1px solid #aaa;
 `
 export const ConstructorWord = styled.div`
   display: flex;

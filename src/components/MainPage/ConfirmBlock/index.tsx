@@ -1,21 +1,23 @@
-import React, {useState} from 'react';
-import UIButton from "../../UI/UIButton";
+import React, { useState } from 'react'
+import UICheckButton from '../../UI/UICheckButton'
 import * as S from '../../../styles/confirmStyles'
-import ConfirmSign from "./ConfirmSign";
+import ConfirmSign from './ConfirmSign'
 
 const ConfirmBlock = () => {
-	const [isConfirmSignVisible, setIsConfirmSignVisible] = useState(false)
+  const [isConfirmSignVisible, setIsConfirmSignVisible] = useState(false)
 
-	const confirmHandler = () => {
-		setIsConfirmSignVisible(prevState => !prevState)
-	}
+  const confirmHandler = () => {
+    setIsConfirmSignVisible((prevState) => !prevState)
+  }
 
-	return (
-		<S.ConfirmBlock>
-			{isConfirmSignVisible && <ConfirmSign/>}
-			<UIButton onClick={confirmHandler} isConfirmSignVisible={isConfirmSignVisible}>Check</UIButton>
-		</S.ConfirmBlock>
-	);
-};
+  return (
+    <S.ConfirmBlock>
+      {isConfirmSignVisible && <ConfirmSign />}
+      <UICheckButton onClick={confirmHandler} isConfirmSignVisible={isConfirmSignVisible}>
+        Check
+      </UICheckButton>
+    </S.ConfirmBlock>
+  )
+}
 
-export default ConfirmBlock;
+export default ConfirmBlock

@@ -1,8 +1,8 @@
-import {styled} from "styled-components";
-import {vars} from "./_vars";
+import { styled } from 'styled-components'
+import { vars } from './_vars'
 
 type Props = {
-	$isAnswerCorrect?: boolean
+  $isAnswerCorrect?: boolean
 }
 
 export const ConfirmBlock = styled.div`
