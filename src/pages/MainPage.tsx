@@ -9,7 +9,7 @@ import { useWorkplaceStore } from '../store/workplaceStore'
 import ConstructorBlock from '../components/MainPage/ConstructorBlock'
 import { shuffleWords } from '../lib/shuffleWords'
 import WorksheetBlock from '../components/MainPage/WorksheetBlock'
-import UIButton from "../components/UI/UIButton";
+import ConfirmBlock from '../components/MainPage/ConfirmBlock'
 
 const MainPage = () => {
   const { dispatchEnglishPhraseArray } = usePhrasesStore(({ dispatchEnglishPhraseArray }) => ({
@@ -20,12 +20,16 @@ const MainPage = () => {
   }))
 
   const fetchEnAndRusPhrases = async () => {
-    const data = phrasesStub
-    const englishWordsArray = convertStringPhraseToWordsArray(data.en)
-    const russianWordsArray = convertStringPhraseToWordsArray(data.ru)
-    shuffleWords(russianWordsArray)
-    dispatchEnglishPhraseArray(englishWordsArray)
-    dispatchConstructorArray(russianWordsArray)
+    try {
+      const data = phrasesStub
+      const englishWordsArray = convertStringPhraseToWordsArray(data.en)
+      const russianWordsArray = convertStringPhraseToWordsArray(data.ru)
+      shuffleWords(russianWordsArray)
+      dispatchEnglishPhraseArray(englishWordsArray)
+      dispatchConstructorArray(russianWordsArray)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   useEffect(() => {
@@ -39,7 +43,7 @@ const MainPage = () => {
         <NeedToTranslateBlock />
         <WorksheetBlock />
         <ConstructorBlock />
-        <UIButton/>
+        <ConfirmBlock />
       </S.Container>
     </S.Wrapper>
   )

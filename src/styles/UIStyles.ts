@@ -1,7 +1,12 @@
-import {styled} from "styled-components";
-import {vars} from "./_vars";
+import { styled } from 'styled-components'
+import { vars } from './_vars'
 
-export const UIButton = styled.button`
+type Props = {
+  $isConfirmSignVisible?: boolean
+}
+
+export const UIButton = styled.button<Props>`
+  position: absolute;
   border: none;
   background: #fff;
   background: linear-gradient(90deg, #fff 0%, #f3f3f3 100%);
@@ -11,7 +16,9 @@ export const UIButton = styled.button`
   box-shadow: 4px 4px 4px ${vars.$colorThemeShadows}, -1px -1px 4px #fff;
   font-size: ${vars.$fontsizeRegular};
   font-weight: 600;
-  transition: transform ;
+  z-index: 1;
+  transition: transform 1s;
+  transform: ${(props) => (props.$isConfirmSignVisible ? 'translateY(50px)' : 'translateY(0)')};
 
   &:active {
     box-shadow: inset 4px 4px 4px ${vars.$colorThemeShadows}, inset -1px -1px 4px #fff;

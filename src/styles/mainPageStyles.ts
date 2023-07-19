@@ -41,17 +41,17 @@ export const NeedToTranslateWord = styled.p`
 `
 export const WorksheetBlock = styled.div`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   column-gap: 6px;
   row-gap: 10px;
   width: 100%;
-  min-height: 100px;
+  height: 120px;
   border: 4px dashed ${vars.$colorThemeShadows};
   border-radius: 12px;
   padding: 8px 16px;
   font-weight: 600;
 `
-export const WorksheetWord = styled.p``
 
 export const ConstructorBlock = styled.div`
   display: flex;
@@ -59,9 +59,12 @@ export const ConstructorBlock = styled.div`
   align-items: center;
   column-gap: 6px;
   row-gap: 10px;
+  height: 120px;
+  width: 100%;
   padding: 8px 16px;
+  border: 1px solid #aaa;
 `
-export const ConstructorWord = styled.p`
+export const ConstructorWord = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +74,8 @@ export const ConstructorWord = styled.p`
   border-radius: 16px;
   box-shadow: 0 4px 4px ${vars.$colorThemeShadows};
   font-weight: 600;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
 `
 export const ConstructorEmptySpace = styled(ConstructorWord)`
   background-color: ${vars.$colorThemeShadows};
