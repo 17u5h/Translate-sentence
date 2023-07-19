@@ -1,9 +1,11 @@
 import React from 'react'
 import * as S from '../../../styles/confirmStyles'
-import { useConfirmAnswerStore } from '../../../store/confirmAnswerStore'
 
-const ConfirmSign = () => {
-  const { isAnswerCorrect } = useConfirmAnswerStore(({ isAnswerCorrect }) => ({ isAnswerCorrect }))
+type Props = {
+  isAnswerCorrect: boolean
+}
+
+const ConfirmSign = ({isAnswerCorrect}: Props) => {
 
   return (
     <S.ConfirmSign $isAnswerCorrect={isAnswerCorrect}>
