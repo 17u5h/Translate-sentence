@@ -3,26 +3,27 @@ import * as S from '../../../styles/mainPageStyles'
 import { Word } from '../../../types/Word'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
-import { seekAndDestroyWord } from '../../../lib/seekAndDestroyWord'
+import { changeOrderOfWordsInWorksheet } from '../../../lib/changeOrderOfWordsInWorksheet'
 
 type Props = {
   word: Word
+  isWorksheet: boolean
 }
 
-const ConstructorWord = ({ word }: Props) => {
-  const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
-    useWorkplaceStore(
-      ({ constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray }) => ({
-        constructorArray,
-        dispatchConstructorArray,
-        worksheetArray,
-        dispatchWorksheetArray
-      })
-    )
+const DraggableWord = ({ word, isWorksheet }: Props) => {
+  const { worksheetArray, dispatchWorksheetArray } = useWorkplaceStore(
+    ({ worksheetArray, dispatchWorksheetArray }) => ({
+      worksheetArray,
+      dispatchWorksheetArray
+    })
+  )
 
-  const { dispatchCurrentWord } = useDragDropStore(({ dispatchCurrentWord }) => ({
-    dispatchCurrentWord
-  }))
+  const { currentWord, dispatchCurrentWord } = useDragDropStore(
+    ({ currentWord, dispatchCurrentWord }) => ({
+      currentWord,
+      dispatchCurrentWord
+    })
+  )
 
   const dragStartHandler = (e: React.DragEvent<HTMLDivElement>, word: Word) => {
     dispatchCurrentWord(word)
@@ -42,6 +43,8 @@ const ConstructorWord = ({ word }: Props) => {
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>, word: Word) => {
     e.preventDefault()
+    if (isWorksheet)
+      changeOrderOfWordsInWorksheet(currentWord, word, worksheetArray, dispatchWorksheetArray)
   }
 
   return (
@@ -58,4 +61,4 @@ const ConstructorWord = ({ word }: Props) => {
   )
 }
 
-export default ConstructorWord
+export default DraggableWord

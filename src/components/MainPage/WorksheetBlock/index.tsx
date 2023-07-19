@@ -1,7 +1,7 @@
 import React from 'react'
 import * as S from '../../../styles/mainPageStyles'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
-import ConstructorWord from '../ConstructorBlock/ConstructorWord'
+import DraggableWord from '../ConstructorBlock/DraggableWord'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { moveWordFromTo } from '../../../lib/moveWordFromTo'
 
@@ -19,7 +19,10 @@ const WorksheetBlock = () => {
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
+    const isToWorksheet = true
+
     moveWordFromTo(
+      isToWorksheet,
       currentWord,
       constructorArray,
       worksheetArray,
@@ -42,9 +45,11 @@ const WorksheetBlock = () => {
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={(e) => dragEndHandler(e)}
     >
-      {worksheetArray.map((el) => (
-        <ConstructorWord key={el.id} word={el} />
-      ))}
+      {worksheetArray
+        .sort((a, b) => a.order - b.order)
+        .map((el) => (
+          <DraggableWord key={el.id} word={el} isWorksheet={true} />
+        ))}
     </S.WorksheetBlock>
   )
 }
