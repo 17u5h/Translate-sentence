@@ -5,6 +5,8 @@ import DraggableWord from '../atoms/DraggableWord'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { moveWordFromTo } from '../../../lib/moveWordFromTo'
 import EmptySlot from '../atoms/EmptySlot'
+import {placeWordToEmptySlot} from "../../../lib/placeWordToEmptySlot";
+import {placeWordToFirstEmptySlot} from "../../../lib/placeWordToFirstEmptySlot";
 
 const ConstructorBlock = () => {
   const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
@@ -17,8 +19,8 @@ const ConstructorBlock = () => {
       })
     )
   const { currentWord } = useDragDropStore(({ currentWord }) => ({ currentWord }))
-  const { visibleConstructorArray } = useWorkplaceStore(({ visibleConstructorArray }) => ({
-    visibleConstructorArray
+  const { visibleConstructorArray,dispatchVisibleConstructorArray } = useWorkplaceStore(({ visibleConstructorArray,dispatchVisibleConstructorArray }) => ({
+    visibleConstructorArray,dispatchVisibleConstructorArray
   }))
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -32,6 +34,11 @@ const ConstructorBlock = () => {
       constructorArray,
       dispatchWorksheetArray,
       dispatchConstructorArray
+    )
+    placeWordToFirstEmptySlot(
+      currentWord,
+      visibleConstructorArray,
+      dispatchVisibleConstructorArray
     )
   }
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {

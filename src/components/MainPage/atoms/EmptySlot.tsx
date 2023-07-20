@@ -17,6 +17,14 @@ const EmptySlot = ({ emptySlot }: Props) => {
       dispatchVisibleConstructorArray
     })
   )
+  const { worksheetArray, dispatchWorksheetArray } =
+    useWorkplaceStore(
+      ({  worksheetArray, dispatchWorksheetArray }) => ({
+
+        worksheetArray,
+        dispatchWorksheetArray
+      })
+    )
 
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -24,11 +32,14 @@ const EmptySlot = ({ emptySlot }: Props) => {
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>, emptySlot: Word) => {
     e.preventDefault()
+    e.stopPropagation()
     placeWordToEmptySlot(
       currentWord,
       emptySlot,
       visibleConstructorArray,
-      dispatchVisibleConstructorArray
+      dispatchVisibleConstructorArray,
+      worksheetArray,
+      dispatchWorksheetArray
     )
   }
   return (

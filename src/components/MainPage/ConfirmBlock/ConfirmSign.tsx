@@ -5,8 +5,7 @@ type Props = {
   isAnswerCorrect: boolean
 }
 
-const ConfirmSign = ({isAnswerCorrect}: Props) => {
-
+const ConfirmSign = ({ isAnswerCorrect }: Props) => {
   return (
     <S.ConfirmSign $isAnswerCorrect={isAnswerCorrect}>
       {isAnswerCorrect ? "You're right!" : 'Something wrong!'}
