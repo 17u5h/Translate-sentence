@@ -6,6 +6,8 @@ type PhrasesStore = {
   dispatchWorksheetArray: (englishPhraseArray: Word[]) => void
   constructorArray: Word[]
   dispatchConstructorArray: (russianPhraseArray: Word[]) => void
+  visibleConstructorArray: Word[]
+  dispatchVisibleConstructorArray: (visibleConstructorArray: Word[]) => void
 }
 
 export const useWorkplaceStore = create<PhrasesStore>((set) => ({
@@ -20,5 +22,11 @@ export const useWorkplaceStore = create<PhrasesStore>((set) => ({
     set((state) => ({
       ...state,
       constructorArray
+    })),
+  visibleConstructorArray: [],
+  dispatchVisibleConstructorArray: (visibleConstructorArray: Word[]) =>
+    set((state) => ({
+      ...state,
+      visibleConstructorArray
     }))
 }))

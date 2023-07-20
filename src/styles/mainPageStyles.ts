@@ -63,7 +63,7 @@ export const ConstructorBlock = styled.div`
   width: 100%;
   padding: 8px 16px;
   background-color: #efefef;
-	border-radius: 12px;
+  border-radius: 12px;
 `
 export const ConstructorWord = styled.div`
   display: flex;
@@ -78,7 +78,7 @@ export const ConstructorWord = styled.div`
   cursor: grab;
   user-select: none;
 `
-export const ConstructorEmptySpace = styled(ConstructorWord)`
+export const ConstructorEmptySlot = styled(ConstructorWord)`
   background-color: ${vars.$colorThemeShadows};
   box-shadow: inset 0 4px 4px ${vars.$colorThemeMain};
   color: ${vars.$colorThemeShadows};

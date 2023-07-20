@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Title from '../components/MainPage/Title'
+import Title from '../components/MainPage/atoms/Title'
 import NeedToTranslateBlock from '../components/MainPage/NeedToTranslateBlock'
 import * as S from '../styles/mainPageStyles'
 import { phrasesStub } from '../stubs/phrasesStub'
@@ -10,16 +10,19 @@ import ConstructorBlock from '../components/MainPage/ConstructorBlock'
 import { shuffleWords } from '../lib/shuffleWords'
 import WorksheetBlock from '../components/MainPage/WorksheetBlock'
 import ConfirmBlock from '../components/MainPage/ConfirmBlock'
-import {usePlayAgainStore} from "../store/playAgainStore";
+import { usePlayAgainStore } from '../store/playAgainStore'
 
 const MainPage = () => {
-  const { dispatchEnglishPhraseArray } = usePhrasesStore(({ dispatchEnglishPhraseArray }) => ({
-    dispatchEnglishPhraseArray
-  }))
+  const { dispatchEnglishPhraseArray, dispatchConstructorArrayLength } = usePhrasesStore(
+    ({ dispatchEnglishPhraseArray, dispatchConstructorArrayLength }) => ({
+      dispatchEnglishPhraseArray,
+      dispatchConstructorArrayLength
+    })
+  )
   const { dispatchConstructorArray } = useWorkplaceStore(({ dispatchConstructorArray }) => ({
     dispatchConstructorArray
   }))
-  const {playAgain} = usePlayAgainStore(({playAgain}) => ({
+  const { playAgain } = usePlayAgainStore(({ playAgain }) => ({
     playAgain
   }))
 
@@ -29,6 +32,7 @@ const MainPage = () => {
       const englishWordsArray = convertStringPhraseToWordsArray(data.en)
       const russianWordsArray = convertStringPhraseToWordsArray(data.ru)
       shuffleWords(russianWordsArray)
+      dispatchConstructorArrayLength(russianWordsArray.length)
       dispatchEnglishPhraseArray(englishWordsArray)
       dispatchConstructorArray(russianWordsArray)
     } catch (e) {
