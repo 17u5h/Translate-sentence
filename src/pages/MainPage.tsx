@@ -10,6 +10,7 @@ import ConstructorBlock from '../components/MainPage/ConstructorBlock'
 import { shuffleWords } from '../lib/shuffleWords'
 import WorksheetBlock from '../components/MainPage/WorksheetBlock'
 import ConfirmBlock from '../components/MainPage/ConfirmBlock'
+import {usePlayAgainStore} from "../store/playAgainStore";
 
 const MainPage = () => {
   const { dispatchEnglishPhraseArray } = usePhrasesStore(({ dispatchEnglishPhraseArray }) => ({
@@ -17,6 +18,9 @@ const MainPage = () => {
   }))
   const { dispatchConstructorArray } = useWorkplaceStore(({ dispatchConstructorArray }) => ({
     dispatchConstructorArray
+  }))
+  const {playAgain} = usePlayAgainStore(({playAgain}) => ({
+    playAgain
   }))
 
   const fetchEnAndRusPhrases = async () => {
@@ -34,7 +38,7 @@ const MainPage = () => {
 
   useEffect(() => {
     fetchEnAndRusPhrases()
-  }, [])
+  }, [playAgain])
 
   return (
     <S.Wrapper>
