@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import * as S from '../../../styles/mainPageStyles'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
 import DraggableWord from '../atoms/DraggableWord'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { moveWordFromTo } from '../../../lib/moveWordFromTo'
 import EmptySlot from '../atoms/EmptySlot'
-import {placeWordToEmptySlot} from "../../../lib/placeWordToEmptySlot";
-import {placeWordToFirstEmptySlot} from "../../../lib/placeWordToFirstEmptySlot";
-import {Word} from "../../../types/Word";
+import { sortByInitialOrder } from '../../../lib/sortByInitialOrder'
+import { deleteExcessEmptySlots } from '../../../lib/deleteExcessEmptySlots'
+import { usePhrasesStore } from '../../../store/initialPhrasesStore'
 
 const ConstructorBlock = () => {
-
   const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
     useWorkplaceStore(
       ({ constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray }) => ({
@@ -21,9 +20,11 @@ const ConstructorBlock = () => {
       })
     )
   const { currentWord } = useDragDropStore(({ currentWord }) => ({ currentWord }))
-  const { visibleConstructorArray,dispatchVisibleConstructorArray } = useWorkplaceStore(({ visibleConstructorArray,dispatchVisibleConstructorArray }) => ({
-    visibleConstructorArray,dispatchVisibleConstructorArray
-  }))
+  const { constructorArrayInitialLength } = usePhrasesStore(
+    ({ constructorArrayInitialLength }) => ({
+      constructorArrayInitialLength
+    })
+  )
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -35,29 +36,24 @@ const ConstructorBlock = () => {
       worksheetArray,
       constructorArray,
       dispatchWorksheetArray,
-      dispatchConstructorArray,
-      dispatchVisibleConstructorArray
+      dispatchConstructorArray
     )
-    console.log('constr', constructorArray)
-    console.log('visib', visibleConstructorArray)
-    // placeWordToFirstEmptySlot(
-    //   currentWord,
-    //   visibleConstructorArray,
-    //   dispatchVisibleConstructorArray
-    // )
+    deleteExcessEmptySlots(
+      constructorArrayInitialLength,
+      constructorArray,
+      dispatchConstructorArray
+    )
   }
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
   }
-  useEffect(() => {
-    return
-  },[visibleConstructorArray])
 
   return (
     <S.ConstructorBlock onDrop={(e) => dropHandler(e)} onDragOver={(e) => dragOverHandler(e)}>
-      {visibleConstructorArray.sort((a, b) => a.initialOrder - b.initialOrder).map((el, index) => {
-        if (el.word !== 'emptySlot') return <DraggableWord key={el.id} word={el} isWorksheet={false} index={index}/>
-        else return <EmptySlot key={el.id} emptySlot={el} isWorksheet={false} index={index}/>
+      {constructorArray.sort(sortByInitialOrder).map((el, index) => {
+        if (el.word !== 'emptySlot')
+          return <DraggableWord key={el.id} word={el} isWorksheet={false} index={index} />
+        else return <EmptySlot key={el.id} emptySlot={el} isWorksheet={false} index={index} />
       })}
     </S.ConstructorBlock>
   )

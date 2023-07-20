@@ -1,4 +1,4 @@
-export type PositionStyles ={
-	top: string
-	left: string
+export type PositionStyles = {
+  top: string
+  left: string
 }

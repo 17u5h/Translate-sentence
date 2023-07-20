@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 import { vars } from './_vars'
 
 type Props = {
-	$isWorksheet: boolean
+  $isWorksheet: boolean
 }
 
 export const Wrapper = styled.div`
@@ -58,7 +58,7 @@ export const WorksheetBlock = styled.div`
 `
 
 export const ConstructorBlock = styled.div`
-	position: relative;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -75,8 +75,8 @@ export const ConstructorWord = styled.div<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
-	background-color: #fafafa;
-	width: 180px;
+  background-color: #fafafa;
+  width: 180px;
   line-height: 20px;
   padding: 4px 18px;
   border: 2px solid ${vars.$colorThemeShadows};
@@ -85,12 +85,12 @@ export const ConstructorWord = styled.div<Props>`
   font-weight: 600;
   cursor: grab;
   user-select: none;
-	z-index: 1;
+  z-index: 1;
 `
 export const ConstructorEmptySlot = styled(ConstructorWord)`
   background-color: ${vars.$colorThemeShadows};
   box-shadow: inset 0 4px 4px ${vars.$colorThemeMain};
   color: ${vars.$colorThemeShadows};
-	z-index: 0;
-	cursor: default;
+  z-index: 0;
+  cursor: default;
 `

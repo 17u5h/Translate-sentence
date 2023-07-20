@@ -13,10 +13,10 @@ import ConfirmBlock from '../components/MainPage/ConfirmBlock'
 import { usePlayAgainStore } from '../store/playAgainStore'
 
 const MainPage = () => {
-  const { dispatchEnglishPhraseArray, dispatchConstructorArrayLength } = usePhrasesStore(
-    ({ dispatchEnglishPhraseArray, dispatchConstructorArrayLength }) => ({
+  const { dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength } = usePhrasesStore(
+    ({ dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength }) => ({
       dispatchEnglishPhraseArray,
-      dispatchConstructorArrayLength
+      dispatchConstructorArrayInitialLength: dispatchConstructorArrayInitialLength
     })
   )
   const { dispatchConstructorArray } = useWorkplaceStore(({ dispatchConstructorArray }) => ({
@@ -32,7 +32,7 @@ const MainPage = () => {
       const englishWordsArray = convertStringPhraseToWordsArray(data.en)
       const russianWordsArray = convertStringPhraseToWordsArray(data.ru)
       shuffleWords(russianWordsArray)
-      dispatchConstructorArrayLength(russianWordsArray.length)
+      dispatchConstructorArrayInitialLength(russianWordsArray.length)
       dispatchEnglishPhraseArray(englishWordsArray)
       dispatchConstructorArray(russianWordsArray)
     } catch (e) {

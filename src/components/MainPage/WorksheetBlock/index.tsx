@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import * as S from '../../../styles/mainPageStyles'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
 import DraggableWord from '../atoms/DraggableWord'
@@ -6,7 +6,6 @@ import { useDragDropStore } from '../../../store/dragDropStore'
 import { moveWordFromTo } from '../../../lib/moveWordFromTo'
 import { keepConstructorArrayFilled } from '../../../lib/keepConstructorArrayFilled'
 import { usePhrasesStore } from '../../../store/initialPhrasesStore'
-import { Word } from '../../../types/Word'
 
 const WorksheetBlock = () => {
   const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
@@ -19,11 +18,10 @@ const WorksheetBlock = () => {
       })
     )
   const { currentWord } = useDragDropStore(({ currentWord }) => ({ currentWord }))
-  const { constructorArrayLength } = usePhrasesStore(({ constructorArrayLength }) => ({
-    constructorArrayLength
-  }))
-  const {visibleConstructorArray, dispatchVisibleConstructorArray } = useWorkplaceStore(
-    ({visibleConstructorArray, dispatchVisibleConstructorArray }) => ({visibleConstructorArray, dispatchVisibleConstructorArray })
+  const { constructorArrayInitialLength } = usePhrasesStore(
+    ({ constructorArrayInitialLength }) => ({
+      constructorArrayInitialLength
+    })
   )
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -36,13 +34,12 @@ const WorksheetBlock = () => {
       constructorArray,
       worksheetArray,
       dispatchConstructorArray,
-      dispatchWorksheetArray,
-      dispatchVisibleConstructorArray
+      dispatchWorksheetArray
     )
     keepConstructorArrayFilled(
-      constructorArrayLength,
+      constructorArrayInitialLength,
       constructorArray,
-      dispatchVisibleConstructorArray
+      dispatchConstructorArray
     )
   }
 
@@ -52,17 +49,14 @@ const WorksheetBlock = () => {
 
   useEffect(() => {
     keepConstructorArrayFilled(
-      constructorArrayLength,
+      constructorArrayInitialLength,
       constructorArray,
-      dispatchVisibleConstructorArray
+      dispatchConstructorArray
     )
   }, [constructorArray])
 
   return (
-    <S.WorksheetBlock
-      onDrop={(e) => dropHandler(e)}
-      onDragOver={(e) => dragOverHandler(e)}
-    >
+    <S.WorksheetBlock onDrop={(e) => dropHandler(e)} onDragOver={(e) => dragOverHandler(e)}>
       {worksheetArray
         .sort((a, b) => a.order - b.order)
         .map((el) => (

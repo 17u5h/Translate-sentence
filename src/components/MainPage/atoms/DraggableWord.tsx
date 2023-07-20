@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from '../../../styles/mainPageStyles'
 import { Word } from '../../../types/Word'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
 import { changeOrderOfWordsInWorksheet } from '../../../lib/changeOrderOfWordsInWorksheet'
-import {PositionStyles} from "../../../types/PositionStyles";
-import {positionStyle} from "../../../lib/positionStyle";
+import { PositionStyles } from '../../../types/PositionStyles'
+import { positionStyle } from '../../../lib/positionStyle'
 
 type Props = {
   word: Word
@@ -47,12 +47,13 @@ const DraggableWord = ({ word, isWorksheet, index }: Props) => {
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>, word: Word) => {
     e.preventDefault()
-    if (isWorksheet) changeOrderOfWordsInWorksheet(currentWord, word, worksheetArray, dispatchWorksheetArray)
+    if (isWorksheet)
+      changeOrderOfWordsInWorksheet(currentWord, word, worksheetArray, dispatchWorksheetArray)
   }
 
   useEffect(() => {
     setPositionStyles(positionStyle(index))
-  }, [])
+  }, [index])
 
   return (
     <S.ConstructorWord

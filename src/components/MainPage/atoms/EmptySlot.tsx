@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from '../../../styles/mainPageStyles'
 import { Word } from '../../../types/Word'
 import { placeWordToEmptySlot } from '../../../lib/placeWordToEmptySlot'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
-import {positionStyle} from "../../../lib/positionStyle";
-import {PositionStyles} from "../../../types/PositionStyles";
+import { positionStyle } from '../../../lib/positionStyle'
+import { PositionStyles } from '../../../types/PositionStyles'
 
 type Props = {
   emptySlot: Word
@@ -17,15 +17,12 @@ const EmptySlot = ({ emptySlot, isWorksheet, index }: Props) => {
   const [positionStyles, setPositionStyles] = useState<PositionStyles>()
 
   const { currentWord } = useDragDropStore(({ currentWord }) => ({ currentWord }))
-  const { visibleConstructorArray, dispatchVisibleConstructorArray } = useWorkplaceStore(
-    ({ visibleConstructorArray, dispatchVisibleConstructorArray }) => ({
-      visibleConstructorArray,
-      dispatchVisibleConstructorArray
-    })
-  )
+
   const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
     useWorkplaceStore(
-      ({ constructorArray, dispatchConstructorArray,  worksheetArray, dispatchWorksheetArray }) => ({ constructorArray, dispatchConstructorArray,
+      ({ constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray }) => ({
+        constructorArray,
+        dispatchConstructorArray,
 
         worksheetArray,
         dispatchWorksheetArray
@@ -42,18 +39,15 @@ const EmptySlot = ({ emptySlot, isWorksheet, index }: Props) => {
     placeWordToEmptySlot(
       currentWord,
       emptySlot,
-      visibleConstructorArray,
-      dispatchVisibleConstructorArray,
+      constructorArray,
+      dispatchConstructorArray,
       worksheetArray,
-      dispatchWorksheetArray,
-      dispatchConstructorArray
+      dispatchWorksheetArray
     )
-    console.log(visibleConstructorArray)
-
   }
   useEffect(() => {
     setPositionStyles(positionStyle(index))
-  }, [])
+  }, [index])
 
   return (
     <S.ConstructorEmptySlot
