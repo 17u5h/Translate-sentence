@@ -22,8 +22,8 @@ const WorksheetBlock = () => {
   const { constructorArrayLength } = usePhrasesStore(({ constructorArrayLength }) => ({
     constructorArrayLength
   }))
-  const { dispatchVisibleConstructorArray } = useWorkplaceStore(
-    ({ dispatchVisibleConstructorArray }) => ({ dispatchVisibleConstructorArray })
+  const {visibleConstructorArray, dispatchVisibleConstructorArray } = useWorkplaceStore(
+    ({visibleConstructorArray, dispatchVisibleConstructorArray }) => ({visibleConstructorArray, dispatchVisibleConstructorArray })
   )
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -36,17 +36,14 @@ const WorksheetBlock = () => {
       constructorArray,
       worksheetArray,
       dispatchConstructorArray,
-      dispatchWorksheetArray
+      dispatchWorksheetArray,
+      dispatchVisibleConstructorArray
     )
     keepConstructorArrayFilled(
       constructorArrayLength,
       constructorArray,
       dispatchVisibleConstructorArray
     )
-  }
-
-  const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    return
   }
 
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -65,7 +62,6 @@ const WorksheetBlock = () => {
     <S.WorksheetBlock
       onDrop={(e) => dropHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
-      onDragEnd={(e) => dragEndHandler(e)}
     >
       {worksheetArray
         .sort((a, b) => a.order - b.order)

@@ -1,6 +1,10 @@
 import { styled } from 'styled-components'
 import { vars } from './_vars'
 
+type Props = {
+	$isWorksheet: boolean
+}
+
 export const Wrapper = styled.div`
   width: 800px;
   margin: auto;
@@ -11,7 +15,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 `
 export const Title = styled.h1`
   width: 80%;
@@ -46,7 +50,7 @@ export const WorksheetBlock = styled.div`
   column-gap: 6px;
   row-gap: 10px;
   width: 100%;
-  height: 120px;
+  height: 180px;
   border: 4px dashed ${vars.$colorThemeShadows};
   border-radius: 12px;
   padding: 8px 16px;
@@ -54,21 +58,25 @@ export const WorksheetBlock = styled.div`
 `
 
 export const ConstructorBlock = styled.div`
+	position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   column-gap: 6px;
   row-gap: 10px;
-  height: 120px;
+  height: 180px;
   width: 100%;
   padding: 8px 16px;
   background-color: #efefef;
   border-radius: 12px;
 `
-export const ConstructorWord = styled.div`
+export const ConstructorWord = styled.div<Props>`
+  position: ${(props) => (props.$isWorksheet ? 'static' : 'absolute')};
   display: flex;
   justify-content: center;
   align-items: center;
+	background-color: #fafafa;
+	width: 180px;
   line-height: 20px;
   padding: 4px 18px;
   border: 2px solid ${vars.$colorThemeShadows};
@@ -77,9 +85,12 @@ export const ConstructorWord = styled.div`
   font-weight: 600;
   cursor: grab;
   user-select: none;
+	z-index: 1;
 `
 export const ConstructorEmptySlot = styled(ConstructorWord)`
   background-color: ${vars.$colorThemeShadows};
   box-shadow: inset 0 4px 4px ${vars.$colorThemeMain};
   color: ${vars.$colorThemeShadows};
+	z-index: 0;
+	cursor: default;
 `

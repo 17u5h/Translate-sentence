@@ -7,7 +7,8 @@ export const moveWordFromTo = (
   arrayFrom: Word[],
   arrayTo: Word[],
   dispatchArrayFrom: (words: Word[]) => void,
-  dispatchArrayTo: (words: Word[]) => void
+  dispatchArrayTo: (words: Word[]) => void,
+  dispatchVisibleConstructorArray: (words: Word[]) => void
 ) => {
   if (!currentWord) return
   if (arrayTo.includes(currentWord)) return
@@ -21,4 +22,5 @@ export const moveWordFromTo = (
   arrayTo.push(currentWord)
   seekAndDestroyWord(currentWord, arrayFrom, dispatchArrayFrom)
   dispatchArrayTo(arrayTo)
+  dispatchVisibleConstructorArray(arrayTo)
 }

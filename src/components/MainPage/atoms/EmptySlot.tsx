@@ -1,15 +1,21 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import * as S from '../../../styles/mainPageStyles'
 import { Word } from '../../../types/Word'
 import { placeWordToEmptySlot } from '../../../lib/placeWordToEmptySlot'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
+import {positionStyle} from "../../../lib/positionStyle";
+import {PositionStyles} from "../../../types/PositionStyles";
 
 type Props = {
   emptySlot: Word
+  isWorksheet: boolean
+  index: number
 }
 
-const EmptySlot = ({ emptySlot }: Props) => {
+const EmptySlot = ({ emptySlot, isWorksheet, index }: Props) => {
+  const [positionStyles, setPositionStyles] = useState<PositionStyles>()
+
   const { currentWord } = useDragDropStore(({ currentWord }) => ({ currentWord }))
   const { visibleConstructorArray, dispatchVisibleConstructorArray } = useWorkplaceStore(
     ({ visibleConstructorArray, dispatchVisibleConstructorArray }) => ({
@@ -17,9 +23,9 @@ const EmptySlot = ({ emptySlot }: Props) => {
       dispatchVisibleConstructorArray
     })
   )
-  const { worksheetArray, dispatchWorksheetArray } =
+  const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
     useWorkplaceStore(
-      ({  worksheetArray, dispatchWorksheetArray }) => ({
+      ({ constructorArray, dispatchConstructorArray,  worksheetArray, dispatchWorksheetArray }) => ({ constructorArray, dispatchConstructorArray,
 
         worksheetArray,
         dispatchWorksheetArray
@@ -39,13 +45,22 @@ const EmptySlot = ({ emptySlot }: Props) => {
       visibleConstructorArray,
       dispatchVisibleConstructorArray,
       worksheetArray,
-      dispatchWorksheetArray
+      dispatchWorksheetArray,
+      dispatchConstructorArray
     )
+    console.log(visibleConstructorArray)
+
   }
+  useEffect(() => {
+    setPositionStyles(positionStyle(index))
+  }, [])
+
   return (
     <S.ConstructorEmptySlot
       onDragOver={(e) => dragOverHandler(e)}
       onDrop={(e) => dropHandler(e, emptySlot)}
+      $isWorksheet={isWorksheet}
+      style={positionStyles}
     >
       *******
     </S.ConstructorEmptySlot>
