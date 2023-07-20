@@ -20,6 +20,5 @@ export const moveWordFromTo = (
   }
   arrayTo.push(currentWord)
   seekAndDestroyWord(currentWord, arrayFrom, dispatchArrayFrom)
-
   dispatchArrayTo(arrayTo)
 }

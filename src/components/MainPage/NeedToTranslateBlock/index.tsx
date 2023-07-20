@@ -1,6 +1,6 @@
 import React from 'react'
-import HumanFigure from '../SVG/HumanFigure'
-import SpeakingCloud from '../SVG/SpeakingCloud'
+import HumanFigure from '../atoms/SVG/HumanFigure'
+import SpeakingCloud from '../atoms/SVG/SpeakingCloud'
 import * as S from '../../../styles/mainPageStyles'
 import NeedToTranslateText from './NeedToTranslateText'
 

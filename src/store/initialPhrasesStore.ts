@@ -6,6 +6,8 @@ type InitialPhrasesStore = {
   dispatchEnglishPhraseArray: (englishPhraseArray: Word[]) => void
   russianPhraseArray: Word[]
   dispatchRussianPhraseArray: (russianPhraseArray: Word[]) => void
+  constructorArrayInitialLength: number
+  dispatchConstructorArrayInitialLength: (constructorArrayLength: number) => void
 }
 
 export const usePhrasesStore = create<InitialPhrasesStore>((set) => ({
@@ -20,5 +22,11 @@ export const usePhrasesStore = create<InitialPhrasesStore>((set) => ({
     set((state) => ({
       ...state,
       russianPhraseArray
+    })),
+  constructorArrayInitialLength: 0,
+  dispatchConstructorArrayInitialLength: (constructorArrayLength: number) =>
+    set((state) => ({
+      ...state,
+      constructorArrayInitialLength: constructorArrayLength
     }))
 }))
