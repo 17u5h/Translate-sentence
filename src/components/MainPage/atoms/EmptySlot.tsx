@@ -55,9 +55,8 @@ const EmptySlot = ({ emptySlot, isWorksheet, index }: Props) => {
       onDrop={(e) => dropHandler(e, emptySlot)}
       $isWorksheet={isWorksheet}
       style={positionStyles}
-    >
-      *******
-    </S.ConstructorEmptySlot>
+    />
+
   )
 }
 
