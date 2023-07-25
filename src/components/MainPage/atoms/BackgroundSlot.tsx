@@ -8,7 +8,7 @@ type Props = {
 }
 
 const BackgroundSlot = ({index}: Props) => {
-	const initialPosition = { top: '-20000px', left: '-20000px', zIndex: '0'}
+	const initialPosition = { top: '10px', left: '10px', zIndex: '0'}
 	const [positionStyles, setPositionStyles] = useState<BackgroundSlotPosition>(initialPosition)
 
 	useEffect(() => {

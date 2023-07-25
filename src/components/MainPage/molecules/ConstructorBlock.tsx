@@ -9,10 +9,9 @@ import { deleteExcessEmptySlots } from '../../../lib/deleteExcessEmptySlots'
 import { usePhrasesStore } from '../../../store/initialPhrasesStore'
 import { usePreviousIndexesStore } from '../../../store/previousIndexesStore'
 import { moveWordToConstructor } from '../../../lib/moveWordToConstructor'
-import BackgroundSlot from "../atoms/BackgroundSlot";
+import BackgroundSlots from "./BackgroundSlots";
 
 const ConstructorBlock = () => {
-  const { initialRussianPhraseArray } = usePhrasesStore(({ initialRussianPhraseArray }) => ({initialRussianPhraseArray}))
 
   const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
     useWorkplaceStore(
@@ -50,7 +49,6 @@ const ConstructorBlock = () => {
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
   }
-
   return (
     <S.ConstructorBlock onDrop={(e) => dropHandler(e)} onDragOver={(e) => dragOverHandler(e)}>
       {constructorArray.sort(sortByInitialOrder).map((el, index) => {
@@ -66,7 +64,7 @@ const ConstructorBlock = () => {
           )
         else return <EmptySlot key={el.id} emptySlot={el} isWorksheet={false} index={index} />
       })}
-      {initialRussianPhraseArray.map((el, index) => (<BackgroundSlot key={el.id} index={index}/>))}
+      <BackgroundSlots />
     </S.ConstructorBlock>
   )
 }
