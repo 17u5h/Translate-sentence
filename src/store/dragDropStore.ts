@@ -1,14 +1,14 @@
 import { create } from 'zustand'
-import { Word } from '../types/Word'
+import { WordType } from '../types/WordType'
 
 type dragDropStore = {
-  currentWord: Word | null
-  dispatchCurrentWord: (currentWord: Word) => void
+  currentWord: WordType | null
+  dispatchCurrentWord: (currentWord: WordType) => void
 }
 
 export const useDragDropStore = create<dragDropStore>((set) => ({
   currentWord: null,
-  dispatchCurrentWord: (currentWord: Word) =>
+  dispatchCurrentWord: (currentWord: WordType) =>
     set((state) => ({
       ...state,
       currentWord

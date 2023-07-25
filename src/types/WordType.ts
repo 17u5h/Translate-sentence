@@ -1,4 +1,4 @@
-export type Word = {
+export type WordType = {
   id: number
   initialOrder: number
   order: number

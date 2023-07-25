@@ -1,10 +1,10 @@
-import { Word } from '../types/Word'
+import { WordType } from '../types/WordType'
 
 export const changeOrderOfWordsInWorksheet = (
-  currentWord: Word | null,
-  onDropWord: Word,
-  worksheetArray: Word[],
-  dispatchWorksheetArray: (words: Word[]) => void
+  currentWord: WordType | null,
+  onDropWord: WordType,
+  worksheetArray: WordType[],
+  dispatchWorksheetArray: (words: WordType[]) => void
 ) => {
   if (!currentWord) return
 
@@ -15,7 +15,6 @@ export const changeOrderOfWordsInWorksheet = (
     if (el.id === currentWord.id) {
       return { ...el, order: onDropWord.order }
     }
-
     return el
   })
 

@@ -3,9 +3,11 @@ import * as S from '../../../styles/mainPageStyles'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
 import DraggableWord from '../atoms/DraggableWord'
 import { useDragDropStore } from '../../../store/dragDropStore'
-import { moveWordFromTo } from '../../../lib/moveWordFromTo'
 import { keepConstructorArrayFilled } from '../../../lib/keepConstructorArrayFilled'
 import { usePhrasesStore } from '../../../store/initialPhrasesStore'
+import { usePreviousIndexesStore } from '../../../store/previousIndexesStore'
+import { moveWordToWorksheet } from '../../../lib/moveWordToWorksheet'
+import {WordType} from "../../../types/WordType";
 
 const WorksheetBlock = () => {
   const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
@@ -23,13 +25,12 @@ const WorksheetBlock = () => {
       constructorArrayInitialLength
     })
   )
+  const { previousIndexes} = usePreviousIndexesStore(({ previousIndexes}) => ({previousIndexes}))
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
-    const isToWorksheet = true
 
-    moveWordFromTo(
-      isToWorksheet,
+    moveWordToWorksheet(
       currentWord,
       constructorArray,
       worksheetArray,
@@ -47,6 +48,8 @@ const WorksheetBlock = () => {
     e.preventDefault()
   }
 
+  const sortByOrder = (a: WordType, b: WordType) => a.order - b.order
+
   useEffect(() => {
     keepConstructorArrayFilled(
       constructorArrayInitialLength,
@@ -58,9 +61,15 @@ const WorksheetBlock = () => {
   return (
     <S.WorksheetBlock onDrop={(e) => dropHandler(e)} onDragOver={(e) => dragOverHandler(e)}>
       {worksheetArray
-        .sort((a, b) => a.order - b.order)
-        .map((el) => (
-          <DraggableWord key={el.id} word={el} isWorksheet={true} />
+        .sort(sortByOrder)
+        .map((el, index) => (
+          <DraggableWord
+            key={el.id}
+            word={el}
+            isWorksheet={true}
+            index={index}
+            previousIndex={previousIndexes[index]}
+          />
         ))}
     </S.WorksheetBlock>
   )

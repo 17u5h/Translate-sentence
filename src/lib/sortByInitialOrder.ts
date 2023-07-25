@@ -1,3 +1,3 @@
-import { Word } from '../types/Word'
+import { WordType } from '../types/WordType'
 
-export const sortByInitialOrder = (a: Word, b: Word) => a.initialOrder - b.initialOrder
+export const sortByInitialOrder = (a: WordType, b: WordType) => a.initialOrder - b.initialOrder
