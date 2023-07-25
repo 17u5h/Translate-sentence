@@ -55,6 +55,9 @@ export const WorksheetBlock = styled.div`
   border-radius: 12px;
   padding: 8px 16px;
   font-weight: 600;
+  &:hover {
+    background-color: #f0f0f0;
+  }
 `
 
 export const ConstructorBlock = styled.div`
@@ -77,6 +80,7 @@ export const ConstructorWord = styled.div<Props>`
   align-items: center;
   background-color: #fafafa;
   width: 180px;
+  height: 32px;
   line-height: 20px;
   padding: 4px 18px;
   border: 2px solid ${vars.$colorThemeShadows};
@@ -85,12 +89,18 @@ export const ConstructorWord = styled.div<Props>`
   font-weight: 600;
   cursor: grab;
   user-select: none;
-  z-index: 1;
+  z-index: 2;
+  &:hover {
+    background-color: #fff;
+  }
 `
-export const ConstructorEmptySlot = styled(ConstructorWord)`
+export const EmptySlot = styled(ConstructorWord)`
   background-color: ${vars.$colorThemeShadows};
   box-shadow: inset 0 4px 4px ${vars.$colorThemeMain};
   color: ${vars.$colorThemeShadows};
-  z-index: 0;
+  z-index: 1;
   cursor: default;
+  &:hover {
+    background-color: ${vars.$colorThemeShadows};
+  }
 `

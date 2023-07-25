@@ -2,7 +2,7 @@ import React from 'react'
 import HumanFigure from '../atoms/SVG/HumanFigure'
 import SpeakingCloud from '../atoms/SVG/SpeakingCloud'
 import * as S from '../../../styles/mainPageStyles'
-import NeedToTranslateText from './NeedToTranslateText'
+import NeedToTranslateText from '../atoms/NeedToTranslateText'
 
 const NeedToTranslateBlock = () => {
   return (

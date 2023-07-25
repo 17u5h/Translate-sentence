@@ -1,6 +1,6 @@
-import { Word } from '../types/Word'
+import { WordType } from '../types/WordType'
 
-export const isArraysEqual = (worksheetArray: Word[], englishPhraseArray: Word[]) => {
+export const isArraysEqual = (worksheetArray: WordType[], englishPhraseArray: WordType[]) => {
   const worksheetIds = worksheetArray.map((el) => el.id)
   const englishPhraseIds = englishPhraseArray.map((el) => el.id)
 

@@ -1,27 +1,27 @@
 import { create } from 'zustand'
-import { Word } from '../types/Word'
+import { WordType } from '../types/WordType'
 
 type InitialPhrasesStore = {
-  englishPhraseArray: Word[]
-  dispatchEnglishPhraseArray: (englishPhraseArray: Word[]) => void
-  russianPhraseArray: Word[]
-  dispatchRussianPhraseArray: (russianPhraseArray: Word[]) => void
+  englishPhraseArray: WordType[]
+  dispatchEnglishPhraseArray: (englishPhraseArray: WordType[]) => void
+  initialRussianPhraseArray: WordType[]
+  dispatchInitialRussianPhraseArray: (russianPhraseArray: WordType[]) => void
   constructorArrayInitialLength: number
   dispatchConstructorArrayInitialLength: (constructorArrayLength: number) => void
 }
 
 export const usePhrasesStore = create<InitialPhrasesStore>((set) => ({
   englishPhraseArray: [],
-  dispatchEnglishPhraseArray: (englishPhraseArray: Word[]) =>
+  dispatchEnglishPhraseArray: (englishPhraseArray: WordType[]) =>
     set((state) => ({
       ...state,
       englishPhraseArray
     })),
-  russianPhraseArray: [],
-  dispatchRussianPhraseArray: (russianPhraseArray: Word[]) =>
+  initialRussianPhraseArray: [],
+  dispatchInitialRussianPhraseArray: (initialRussianPhraseArray: WordType[]) =>
     set((state) => ({
       ...state,
-      russianPhraseArray
+      initialRussianPhraseArray
     })),
   constructorArrayInitialLength: 0,
   dispatchConstructorArrayInitialLength: (constructorArrayLength: number) =>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import UICheckButton from '../../UI/UICheckButton'
 import * as S from '../../../styles/confirmStyles'
-import ConfirmSign from './ConfirmSign'
+import ConfirmSign from '../atoms/ConfirmSign'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
 import { isArraysEqual } from '../../../lib/isArraysEqual'
 import { usePhrasesStore } from '../../../store/initialPhrasesStore'

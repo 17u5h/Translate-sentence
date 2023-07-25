@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react'
 import Title from '../components/MainPage/atoms/Title'
-import NeedToTranslateBlock from '../components/MainPage/NeedToTranslateBlock'
+import NeedToTranslateBlock from '../components/MainPage/molecules/NeedToTranslateBlock'
 import * as S from '../styles/mainPageStyles'
 import { phrasesStub } from '../stubs/phrasesStub'
 import { usePhrasesStore } from '../store/initialPhrasesStore'
 import { convertStringPhraseToWordsArray } from '../lib/convertStringPhraseToWordsArray'
 import { useWorkplaceStore } from '../store/workplaceStore'
-import ConstructorBlock from '../components/MainPage/ConstructorBlock'
+import ConstructorBlock from '../components/MainPage/molecules/ConstructorBlock'
 import { shuffleWords } from '../lib/shuffleWords'
-import WorksheetBlock from '../components/MainPage/WorksheetBlock'
-import ConfirmBlock from '../components/MainPage/ConfirmBlock'
+import WorksheetBlock from '../components/MainPage/molecules/WorksheetBlock'
+import ConfirmBlock from '../components/MainPage/molecules/ConfirmBlock'
 import { usePlayAgainStore } from '../store/playAgainStore'
+import { getInitialIndexes } from '../lib/getInitialIndexes'
+import { usePreviousIndexesStore } from '../store/previousIndexesStore'
 
 const MainPage = () => {
-  const { dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength } = usePhrasesStore(
-    ({ dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength }) => ({
+  const { dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength, dispatchInitialRussianPhraseArray } = usePhrasesStore(
+    ({ dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength, dispatchInitialRussianPhraseArray }) => ({
       dispatchEnglishPhraseArray,
-      dispatchConstructorArrayInitialLength: dispatchConstructorArrayInitialLength
+      dispatchConstructorArrayInitialLength, dispatchInitialRussianPhraseArray
     })
   )
   const { dispatchConstructorArray } = useWorkplaceStore(({ dispatchConstructorArray }) => ({
@@ -25,6 +27,9 @@ const MainPage = () => {
   const { playAgain } = usePlayAgainStore(({ playAgain }) => ({
     playAgain
   }))
+  const { dispatchPreviousIndexes } = usePreviousIndexesStore(({ dispatchPreviousIndexes }) => ({
+    dispatchPreviousIndexes
+  }))
 
   const fetchEnAndRusPhrases = async () => {
     try {
@@ -32,9 +37,12 @@ const MainPage = () => {
       const englishWordsArray = convertStringPhraseToWordsArray(data.en)
       const russianWordsArray = convertStringPhraseToWordsArray(data.ru)
       shuffleWords(russianWordsArray)
+      const initialIndexes = getInitialIndexes(russianWordsArray)
+      dispatchPreviousIndexes(initialIndexes)
       dispatchConstructorArrayInitialLength(russianWordsArray.length)
       dispatchEnglishPhraseArray(englishWordsArray)
       dispatchConstructorArray(russianWordsArray)
+      dispatchInitialRussianPhraseArray(russianWordsArray)
     } catch (e) {
       console.error(e)
     }

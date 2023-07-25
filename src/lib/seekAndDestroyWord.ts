@@ -1,9 +1,9 @@
-import { Word } from '../types/Word'
+import { WordType } from '../types/WordType'
 
 export const seekAndDestroyWord = (
-  word: Word,
-  wordsArray: Word[],
-  dispatchWordsArray: (words: Word[]) => void
+  word: WordType,
+  wordsArray: WordType[],
+  dispatchWordsArray: (words: WordType[]) => void
 ) => {
   if (wordsArray.includes(word)) {
     const index = wordsArray.indexOf(word)

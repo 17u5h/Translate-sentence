@@ -1,66 +1,70 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../../../styles/mainPageStyles'
-import { Word } from '../../../types/Word'
+import { WordType } from '../../../types/WordType'
 import { useDragDropStore } from '../../../store/dragDropStore'
 import { useWorkplaceStore } from '../../../store/workplaceStore'
 import { changeOrderOfWordsInWorksheet } from '../../../lib/changeOrderOfWordsInWorksheet'
-import { PositionStyles } from '../../../types/PositionStyles'
-import { positionStyle } from '../../../lib/positionStyle'
+import { PositionStylesType } from '../../../types/PositionStylesType'
+import { keyframePositionStyle } from '../../../lib/keyframePositionStyle'
+import { insertKeyframesElement } from '../../../lib/insertKeyframesElement'
+import { removeKeyframesElement } from '../../../lib/removeKeyframesElement'
+import { usePreviousIndexesStore } from '../../../store/previousIndexesStore'
+import {managePrevIndexesWhenMoveFromConstructor} from "../../../lib/managePrevIndexesWhenMoveFromConstructor";
 
 type Props = {
-  word: Word
+  word: WordType
   isWorksheet: boolean
-  index?: number
+  index: number
+  previousIndex: number
 }
 
-const DraggableWord = ({ word, isWorksheet, index }: Props) => {
-  const [positionStyles, setPositionStyles] = useState<PositionStyles>()
-  const { worksheetArray, dispatchWorksheetArray } = useWorkplaceStore(
-    ({ worksheetArray, dispatchWorksheetArray }) => ({
-      worksheetArray,
-      dispatchWorksheetArray
-    })
-  )
+const DraggableWord = ({ word, isWorksheet, index, previousIndex }: Props) => {
+  const initialPosition = { top: '-20000px', left: '-20000px' }
+  const [positionStyles, setPositionStyles] = useState<PositionStylesType>(initialPosition)
+
+  const { worksheetArray, dispatchWorksheetArray, constructorArray } =
+    useWorkplaceStore(
+      ({ worksheetArray, dispatchWorksheetArray, constructorArray }) => ({
+        worksheetArray,
+        dispatchWorksheetArray,
+        constructorArray
+      })
+    )
 
   const { currentWord, dispatchCurrentWord } = useDragDropStore(
-    ({ currentWord, dispatchCurrentWord }) => ({
-      currentWord,
-      dispatchCurrentWord
-    })
+    ({ currentWord, dispatchCurrentWord }) => ({currentWord, dispatchCurrentWord})
   )
 
-  const dragStartHandler = (e: React.DragEvent<HTMLDivElement>, word: Word) => {
+  const { dispatchPreviousIndexes } = usePreviousIndexesStore(({ dispatchPreviousIndexes }) => ({dispatchPreviousIndexes}))
+
+  const dragStartHandler = (e: React.DragEvent<HTMLDivElement>, word: WordType) => {
     dispatchCurrentWord(word)
-  }
-
-  const dragLeaveHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    return
-  }
-
-  const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    return
+    if (!isWorksheet) managePrevIndexesWhenMoveFromConstructor(constructorArray, word, dispatchPreviousIndexes)
   }
 
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
   }
 
-  const dropHandler = (e: React.DragEvent<HTMLDivElement>, word: Word) => {
+  const dropHandler = (e: React.DragEvent<HTMLDivElement>, word: WordType) => {
     e.preventDefault()
-    if (isWorksheet)
-      changeOrderOfWordsInWorksheet(currentWord, word, worksheetArray, dispatchWorksheetArray)
+    if (isWorksheet) changeOrderOfWordsInWorksheet(currentWord, word, worksheetArray, dispatchWorksheetArray)
   }
 
   useEffect(() => {
-    setPositionStyles(positionStyle(index))
-  }, [index])
+    const keyframe = keyframePositionStyle(index, previousIndex)
+    const styleElement = insertKeyframesElement(keyframe)
+    const style = { WebkitAnimation: `moveIt${index} 1s forwards` }
+
+    setPositionStyles(style)
+
+    return () => removeKeyframesElement(styleElement)
+  }, [previousIndex, index])
 
   return (
     <S.ConstructorWord
       draggable={true}
       onDragStart={(e) => dragStartHandler(e, word)}
-      onDragLeave={(e) => dragLeaveHandler(e)}
-      onDragEnd={(e) => dragEndHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
       onDrop={(e) => dropHandler(e, word)}
       $isWorksheet={isWorksheet}
