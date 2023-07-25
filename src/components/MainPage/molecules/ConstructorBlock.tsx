@@ -9,8 +9,11 @@ import { deleteExcessEmptySlots } from '../../../lib/deleteExcessEmptySlots'
 import { usePhrasesStore } from '../../../store/initialPhrasesStore'
 import { usePreviousIndexesStore } from '../../../store/previousIndexesStore'
 import { moveWordToConstructor } from '../../../lib/moveWordToConstructor'
+import BackgroundSlot from "../atoms/BackgroundSlot";
 
 const ConstructorBlock = () => {
+  const { initialRussianPhraseArray } = usePhrasesStore(({ initialRussianPhraseArray }) => ({initialRussianPhraseArray}))
+
   const { constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray } =
     useWorkplaceStore(
       ({ constructorArray, dispatchConstructorArray, worksheetArray, dispatchWorksheetArray }) => ({
@@ -63,6 +66,7 @@ const ConstructorBlock = () => {
           )
         else return <EmptySlot key={el.id} emptySlot={el} isWorksheet={false} index={index} />
       })}
+      {initialRussianPhraseArray.map((el, index) => (<BackgroundSlot key={el.id} index={index}/>))}
     </S.ConstructorBlock>
   )
 }

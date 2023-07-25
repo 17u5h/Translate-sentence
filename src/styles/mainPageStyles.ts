@@ -75,8 +75,6 @@ export const ConstructorBlock = styled.div`
 `
 export const ConstructorWord = styled.div<Props>`
   position: ${(props) => (props.$isWorksheet ? 'static' : 'absolute')};
-  // top: ${(props) => (props.$isWorksheet ? 'static' : 'absolute')};
-  // left: ${(props) => (props.$isWorksheet ? 'static' : 'absolute')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +89,7 @@ export const ConstructorWord = styled.div<Props>`
   font-weight: 600;
   cursor: grab;
   user-select: none;
-  z-index: 1;
+  z-index: 2;
   &:hover {
     background-color: #fff;
   }
@@ -100,7 +98,7 @@ export const EmptySlot = styled(ConstructorWord)`
   background-color: ${vars.$colorThemeShadows};
   box-shadow: inset 0 4px 4px ${vars.$colorThemeMain};
   color: ${vars.$colorThemeShadows};
-  z-index: 0;
+  z-index: 1;
   cursor: default;
   &:hover {
     background-color: ${vars.$colorThemeShadows};

@@ -15,10 +15,10 @@ import { getInitialIndexes } from '../lib/getInitialIndexes'
 import { usePreviousIndexesStore } from '../store/previousIndexesStore'
 
 const MainPage = () => {
-  const { dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength } = usePhrasesStore(
-    ({ dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength }) => ({
+  const { dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength, dispatchInitialRussianPhraseArray } = usePhrasesStore(
+    ({ dispatchEnglishPhraseArray, dispatchConstructorArrayInitialLength, dispatchInitialRussianPhraseArray }) => ({
       dispatchEnglishPhraseArray,
-      dispatchConstructorArrayInitialLength: dispatchConstructorArrayInitialLength
+      dispatchConstructorArrayInitialLength, dispatchInitialRussianPhraseArray
     })
   )
   const { dispatchConstructorArray } = useWorkplaceStore(({ dispatchConstructorArray }) => ({
@@ -42,6 +42,7 @@ const MainPage = () => {
       dispatchConstructorArrayInitialLength(russianWordsArray.length)
       dispatchEnglishPhraseArray(englishWordsArray)
       dispatchConstructorArray(russianWordsArray)
+      dispatchInitialRussianPhraseArray(russianWordsArray)
     } catch (e) {
       console.error(e)
     }
