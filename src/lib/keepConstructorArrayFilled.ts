@@ -1,4 +1,5 @@
 import { WordType } from '../types/WordType'
+import {EmptySlotType} from "../enum/EmptySlotType";
 
 export const keepConstructorArrayFilled = (
   constructorArrayLength: number,
@@ -15,7 +16,7 @@ export const keepConstructorArrayFilled = (
       id: emptySlotId,
       initialOrder: 1000,
       order: 0,
-      word: 'emptySlot'
+      word: EmptySlotType.emptySlot
     }
     visibleArray.push(emptySlot)
   }
