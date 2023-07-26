@@ -71,6 +71,7 @@ const WorksheetBlock = () => {
             previousIndex={previousIndexes[index]}
           />
         ))}
+      <S.CentralSign>Перетаскивайте сюда слова</S.CentralSign>
     </S.WorksheetBlock>
   )
 }
