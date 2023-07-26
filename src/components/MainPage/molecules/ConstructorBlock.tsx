@@ -10,6 +10,7 @@ import { usePhrasesStore } from '../../../store/initialPhrasesStore'
 import { usePreviousIndexesStore } from '../../../store/previousIndexesStore'
 import { moveWordToConstructor } from '../../../lib/moveWordToConstructor'
 import BackgroundSlots from "./BackgroundSlots";
+import {EmptySlotType} from "../../../enum/EmptySlotType";
 
 const ConstructorBlock = () => {
 
@@ -52,7 +53,7 @@ const ConstructorBlock = () => {
   return (
     <S.ConstructorBlock onDrop={(e) => dropHandler(e)} onDragOver={(e) => dragOverHandler(e)}>
       {constructorArray.sort(sortByInitialOrder).map((el, index) => {
-        if (el.word !== 'emptySlot')
+        if (el.word !== EmptySlotType.emptySlot)
           return (
             <DraggableWord
               key={el.id}

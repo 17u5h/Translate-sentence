@@ -1,5 +1,6 @@
 import { sortByInitialOrder } from './sortByInitialOrder'
 import { WordType } from '../types/WordType'
+import {EmptySlotType} from "../enum/EmptySlotType";
 
 export const calculateNewPreviousIndexes = (
   constructorArray: WordType[],
@@ -7,7 +8,7 @@ export const calculateNewPreviousIndexes = (
   indexOfEmptySlot: number,
   dispatchPreviousIndexes: (indexes: number[]) => void
 ) => {
-  const arrayWithoutEmptySlots = constructorArray.filter((el) => el.word !== 'emptySlot')
+  const arrayWithoutEmptySlots = constructorArray.filter((el) => el.word !== EmptySlotType.emptySlot)
   const previousIndexes: number[] = []
 
   if (!currentWord) throw new Error('потерялось перетаскиваемое слово в компоненте EmptySlot')
