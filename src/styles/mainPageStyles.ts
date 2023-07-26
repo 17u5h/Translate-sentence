@@ -44,6 +44,7 @@ export const NeedToTranslateWord = styled.p`
   border-bottom: 2px dashed ${vars.$colorThemeShadows};
 `
 export const WorksheetBlock = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -58,6 +59,14 @@ export const WorksheetBlock = styled.div`
   &:hover {
     background-color: #f0f0f0;
   }
+`
+
+export const CentralSign = styled. h2`
+  position: absolute;
+  color: #d1d1d1;
+  font-size: 32px;
+  top: 40%;
+  left: 20%;
 `
 
 export const ConstructorBlock = styled.div`
