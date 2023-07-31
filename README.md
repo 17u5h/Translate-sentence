@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+Игра: переведи предложение
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Нужно перетаскивать слова в поле, после чего нажать кнопку проверки.
 
-## Available Scripts
+Список технологий:
+TypeScript
+React
+Zustand
+styled-components
+react-speech-kit
+es-lint
+prettier
 
-In the project directory, you can run:
+![image](https://github.com/17u5h/Translate-sequence/assets/102058870/39049ffe-be22-4599-b0bc-4036d1d86e8a)
 
-### `npm start`
+После перетаскивания, слова плавно возращаются на своё место
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![image](https://github.com/17u5h/Translate-sequence/assets/102058870/27a0e230-a535-47f8-83e1-a70dc10a45a8)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Если всё верно, то произносится заданная фраза с помощью text to speech библиотеки
 
-### `npm test`
+![image](https://github.com/17u5h/Translate-sequence/assets/102058870/e1f96620-4667-4578-88d9-50237aef3b5c)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
